@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>SpoilGuard · Privacy</title>
+<link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAADyElEQVRYhcWXTWhcZRSGn/fMTEaLuqg/FLUQi8RgdRFCXYkLUVeCJtaWQqsoJlEwQTDRRUVG0Y0uhNamSdoGq4taaaxkoeIPulDoojEFxZooKYWkqIkiplbzM/e4mJnMzP2ZSYPSAwPfN/Pd87z3vOd+3x24xKG1XNTZ6ZmrF/P3SmoDMPfjvzakPh0a0tL/JiCXc5s/s3xnSrZDYqvgGgEGSCCYMzgm2RE28lUup+A/EfDso4utZtpBoO2SbizCyh8VRZSFIJjGOSqzIy8e1NhFC3h6l9/UoGCbCB6T6ZZCUhEHL40tNK8Yn8V5Ny07/PxBna4poGfXwm2y9NuGt1QmMRQBhsVYjd+klevHzfRI34C+KzGtSo2l28PwksJacKl8N4lwQE6L8rRXMqsEpBRYNImqAeFPWGgSvLjWFVQx03GehOFJwNqViMIrhcYKsOLVSXDqwEvj7OUF+NI/teE1KhBSX5Ek1ooKwM23i7auwspje5yZn0JrrZpnUQH1Oz6pEtc3QluXyGQhk4XmLVEbalagpKaez3Hj9dfCth4jky3kCAKYHPO6PRApyFo6ft0VBfi6K8uZvjjqTE/W74EqAWbxz35jE9y/UzQ2RcuZycDD3cb6DeU8Jz6EU1/G2BXjeZUFci4QuttsFnY+YzRkofUuMTLoTIwXSmsGD3SIGzaVc3x/Ar4e9SpoZU7cztewwGfjOn5lcQoe6hLNLYXmum+7aGoprzh7Gj55x5HHlL44ThmzyRY4c+GmW1yEDw45Qb4sor1LPNghWu8uw2enYXTACZZrNyswlyggY6mxuKb74RtnZLBaxK13lOHzv8PIXo/deCJWOKcSBeSGdU4wGZdkctw5XiGiFAsXCvC//igCaj+2E08NaCZRQFHhR0l7/OS4M9Lv5JcL8/wyjA45v51bxZ4ByP3jMC+yFQdu+9IE3cUjPvIMT30L773hNG8REyedmR9jyhwvJq/A9kVuOPwFwEtPBO/LvS3pbI+8/cQ0nRGea6Rrv7aGWRELADxQr8T5OPiqSh2phOYtRV8cK1ZAblhTOL0CcI+c7dSCV8+9eLj1drypM6sWAPDCIRvC6TczDDwMYBU2IITT37mfA0mcRAFCvrTRunE/vJIvDKhjg1xv/byBbiFP5tQJx/VaB8+Z/FVBKgxMaMg80iu/XMfL9f6g1BVQitc7/B6TDwo21en4KZk6n9ynz1eTN9GCcPQd0Gfzi9oM2i2Yj2nKeaTdl/2tzauFczEVqIw93X4VCzwu88LbnzQYpBnu2as/15Lvksa/rcUH6xchcIMAAAAASUVORK5CYII=">
+<style>
+  :root { --bg: #f6f5fd; --fg: #1c2033; --mut: #5d6380; --acc: #5b4be8; --card: #fff; --bd: #e2e0f2; --hov: #efedfb; --g1: #6d5efc; --g2: #a06bff; }
+  @media (prefers-color-scheme: dark) { :root { --bg: #12131c; --fg: #eceef8; --mut: #a6abc4; --acc: #9d92ff; --card: #1b1d2a; --bd: #2b2e42; --hov: #24273a; } }
+  html { background: var(--bg); }
+  body { margin: 0; background: var(--bg); color: var(--fg); font: 16px/1.65 system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", sans-serif; }
+  main { max-width: 44rem; margin: 0 auto; padding: 2rem 1rem 4rem; }
+  .top { display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+  .brand { display: flex; align-items: center; gap: .5rem; font-weight: 800; font-size: 1.15rem; } .brand span { color: var(--acc); }
+  .mark { width: 1.9rem; height: 1.9rem; }
+  .lang { position: relative; }
+  .lang-btn { display: inline-flex; align-items: center; gap: .5rem; border: 1px solid var(--bd); border-radius: .75rem; background: var(--card); color: var(--fg); font: inherit; font-weight: 600; padding: .45rem .8rem; cursor: pointer; transition: border-color .15s; }
+  .lang-btn:hover, .lang-btn[aria-expanded="true"] { border-color: var(--acc); }
+  .lang-btn .chev { transition: transform .2s; opacity: .7; } .lang-btn[aria-expanded="true"] .chev { transform: rotate(180deg); }
+  .lang-menu { position: absolute; right: 0; top: calc(100% + .4rem); z-index: 10; width: min(22rem, calc(100vw - 2rem)); background: var(--card); border: 1px solid var(--bd); border-radius: .9rem; box-shadow: 0 14px 40px rgba(20, 16, 60, .18); padding: .5rem; opacity: 0; transform: translateY(-6px) scale(.98); transform-origin: top right; pointer-events: none; transition: opacity .16s, transform .16s; }
+  .lang-menu.open { opacity: 1; transform: none; pointer-events: auto; }
+  .lang-menu input { width: 100%; box-sizing: border-box; border: 1px solid var(--bd); border-radius: .55rem; background: var(--bg); color: var(--fg); font: inherit; font-size: .92rem; padding: .4rem .6rem; margin-bottom: .4rem; outline: none; }
+  .lang-menu input:focus { border-color: var(--acc); }
+  .lang-list { display: grid; grid-template-columns: 1fr 1fr; gap: .15rem; max-height: 19rem; overflow: auto; margin: 0; padding: 0; list-style: none; }
+  .lang-list li { margin: 0; padding: .38rem .6rem; border-radius: .5rem; cursor: pointer; font-size: .93rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .lang-list li:hover, .lang-list li.act { background: var(--hov); }
+  .lang-list li[aria-selected="true"] { color: var(--acc); font-weight: 700; }
+  .lang-list li[aria-selected="true"]::before { content: "✓ "; }
+  .lang-list .none { grid-column: 1 / -1; color: var(--mut); cursor: default; }
+  h1 { font-size: 2rem; line-height: 1.2; margin: 0 0 .3rem; } h2 { margin: 2.2rem 0 .4rem; font-size: 1.2rem; }
+  .lead { font-size: 1.12rem; background: var(--card); border: 1px solid var(--bd); border-left: 4px solid var(--acc); border-radius: .8rem; padding: 1rem 1.2rem; }
+  .mut { color: var(--mut); } a { color: var(--acc); }
+  li { margin: .3rem 0; } kbd { background: var(--card); border: 1px solid var(--bd); border-radius: .3rem; padding: 0 .3rem; font-size: .92em; }
+  ol li { margin: .45rem 0; }
+  #doc { animation: fade .25s ease; } @keyframes fade { from { opacity: 0; transform: translateY(4px); } }
+  @media (prefers-reduced-motion: reduce) { #doc, .lang-menu, .chev { animation: none !important; transition: none !important; } }
+</style>
+</head>
+<body>
+<main>
+<div class="top">
+  <div class="brand"><svg class="mark" viewBox="0 0 128 128" aria-hidden="true"><defs><linearGradient id="pg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--g1)"/><stop offset="1" style="stop-color:var(--g2)"/></linearGradient></defs><path d="M64 9 L110 25 V60 C110 90 91 110 64 120 C37 110 18 90 18 60 V25 Z" fill="url(#pg)" stroke="url(#pg)" stroke-width="8" stroke-linejoin="round"/><path d="M42 64 L58 80 L88 46" fill="none" stroke="#fff" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/></svg><b>Spoil<span>Guard</span></b></div>
+  <div class="lang">
+    <button type="button" class="lang-btn" id="langBtn" aria-haspopup="listbox" aria-expanded="false" aria-label="Language"><span aria-hidden="true">🌐</span><span id="langName">English</span><svg class="chev" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    <div class="lang-menu" id="langMenu">
+      <input id="langSearch" type="search" autocomplete="off" aria-label="Search">
+      <ul class="lang-list" id="langList" role="listbox" aria-label="Language"></ul>
+    </div>
+  </div>
+</div>
+<article id="doc"></article>
+</main>
+<script>
+/* SpoilGuard · textos de la política de privacidad (15 idiomas). Contenido fijo escrito a mano. */
+globalThis.SG_PRIV = {
+en: { name: 'English', t: 'Privacy policy', u: 'Last updated: 17 November 2026 · Version 1.0',
+ lead: '<strong>SpoilGuard does not collect, share or sell any of your data.</strong> It has no server. Everything happens inside your browser, and it even works with no internet connection at all.',
+ s: [
+ ['What SpoilGuard stores, and where', '<p>Only what you set up yourself: your word lists and exceptions, your settings (language, colours, icon), the extra websites you added and a counter of how many spoilers were hidden. It is all kept in your browser’s local storage, on your own computer.</p>'],
+ ['What it reads, and what it doesn’t keep', '<p>To know what to cover, SpoilGuard reads the text of the page you have open, on the spot, and compares it with your lists. That text is never saved, logged or sent anywhere. SpoilGuard does not keep your browsing history or a list of the pages you visit.</p>'],
+ ['Optional sync', '<p>It is off unless you turn it on. If you do, a copy of your lists and settings is stored by <em>your browser’s own sync</em> in your account, the same way it syncs your bookmarks, so they appear on your other computers. SpoilGuard still doesn’t connect to anything itself. Turning sync off deletes the copy from your account.</p>'],
+ ['Permissions', '<ul><li><strong>Storage</strong>: to keep your lists and settings.</li><li><strong>Google, X, YouTube, Instagram, Reddit, Facebook, Threads, Bluesky, TikTok and Twitch</strong>: to cover spoilers on those sites.</li><li><strong>Other sites, only if you add them</strong>: the browser asks you one site at a time, and removing a site withdraws the permission.</li><li><strong>Active tab</strong>: to know which site you are on when you press “Also protect this site”.</li><li><strong>Scripting</strong>: to switch the filter on in the sites you added.</li><li><strong>Context menus</strong>: for the right-click option “Block with SpoilGuard”. You can turn it off in Settings.</li></ul>'],
+ ['Check it yourself', '<p>You don’t need to take our word for it. Three quick checks:</p><ol><li><strong>Go offline.</strong> Turn off your Wi-Fi and open a saved page: SpoilGuard keeps working, because it never needed the internet.</li><li><strong>Watch the network.</strong> Press <kbd>F12</kbd> on any site, open the <em>Network</em> tab and use SpoilGuard as usual. You won’t see a single request made by SpoilGuard.</li><li><strong>Read the code.</strong> All the code ships inside the extension, readable and not obfuscated. Nothing is downloaded later.</li></ol>'],
+ ['External links', '<p>SpoilGuard contains two kinds of links: the Ko-fi button (to leave an optional tip) and links like this policy. They only open a page when you click them, and SpoilGuard sends nothing along with them. Ko-fi is an independent service with its own privacy policy. Tipping never unlocks anything: SpoilGuard is complete and free for everyone.</p>'],
+ ['Children', '<p>SpoilGuard collects no data from anyone, so it collects none from children either. It shows no ads and has no accounts, chats or ways to contact strangers.</p>'],
+ ['Changes to this policy', '<p>If SpoilGuard ever needed to handle data differently, you would be told clearly inside the extension before the change took effect, this page would be updated with the new date, and nothing would change without your consent.</p>'],
+ ['Contact', '<p>For questions, suggestions or bug reports, leave a review or use the support section on SpoilGuard’s page in your browser’s extension store. Every message is read.</p>']]},
+es: { name: 'Español', t: 'Política de privacidad', u: 'Última actualización: 17 de noviembre de 2026 · Versión 1.0',
+ lead: '<strong>SpoilGuard no recoge, ni comparte ni vende ningún dato tuyo.</strong> No tiene servidor. Todo ocurre dentro de tu navegador, y funciona incluso sin conexión a internet.',
+ s: [
+ ['Qué guarda SpoilGuard y dónde', '<p>Solo lo que configuras tú: tus listas de palabras y excepciones, tus ajustes (idioma, colores, icono), las webs que has añadido y un contador de cuántos spoilers se han ocultado. Todo se guarda con el almacenamiento local de tu navegador, en tu propio ordenador.</p>'],
+ ['Qué lee y qué no guarda', '<p>Para saber qué tapar, SpoilGuard lee el texto de la página que tienes abierta, en el momento, y lo compara con tus listas. Ese texto nunca se guarda, ni se registra, ni se envía a ningún sitio. SpoilGuard no guarda tu historial ni la lista de páginas que visitas.</p>'],
+ ['Sincronización (opcional)', '<p>Está apagada salvo que tú la enciendas. Si lo haces, una copia de tus listas y ajustes la guarda <em>la propia sincronización de tu navegador</em> en tu cuenta, igual que tus marcadores, para que aparezcan en tus otros ordenadores. SpoilGuard sigue sin conectarse a nada. Al apagarla, la copia se borra de tu cuenta.</p>'],
+ ['Permisos', '<ul><li><strong>Almacenamiento</strong>: para guardar tus listas y ajustes.</li><li><strong>Google, X, YouTube, Instagram, Reddit, Facebook, Threads, Bluesky, TikTok y Twitch</strong>: para tapar los spoilers en esas webs.</li><li><strong>Otras webs, solo si tú las añades</strong>: el navegador te pregunta web a web, y al quitarla se retira el permiso.</li><li><strong>Pestaña activa</strong>: para saber en qué web estás cuando pulsas «Proteger también esta web».</li><li><strong>Scripting</strong>: para activar el filtro en las webs que has añadido.</li><li><strong>Menús contextuales</strong>: para la opción del clic derecho «Vetar en SpoilGuard». Puedes quitarla en Ajustes.</li></ul>'],
+ ['Compruébalo tú', '<p>No hace falta que nos creas. Tres comprobaciones rápidas:</p><ol><li><strong>Desconéctate.</strong> Apaga el wifi y abre una página guardada: SpoilGuard sigue funcionando, porque nunca ha necesitado internet.</li><li><strong>Mira la red.</strong> Pulsa <kbd>F12</kbd> en cualquier web, abre la pestaña <em>Red</em> y usa SpoilGuard con normalidad. No verás ni una sola petición hecha por SpoilGuard.</li><li><strong>Lee el código.</strong> Todo el código va dentro de la extensión, legible y sin ofuscar. No se descarga nada después.</li></ol>'],
+ ['Enlaces externos', '<p>SpoilGuard tiene dos tipos de enlaces: el botón de Ko-fi (para dejar una propina opcional) y enlaces como esta política. Solo abren una página cuando los pulsas, y SpoilGuard no envía nada con ellos. Ko-fi es un servicio independiente con su propia política de privacidad. Dar propina nunca desbloquea nada: SpoilGuard está completo y es gratis para todos.</p>'],
+ ['Menores', '<p>SpoilGuard no recoge datos de nadie, así que tampoco de menores. No muestra anuncios y no tiene cuentas, chats ni formas de contactar con desconocidos.</p>'],
+ ['Cambios en esta política', '<p>Si algún día SpoilGuard necesitara tratar datos de otra forma, se te avisaría con claridad dentro de la extensión antes de que el cambio tuviera efecto, esta página se actualizaría con la nueva fecha y nada cambiaría sin tu consentimiento.</p>'],
+ ['Contacto', '<p>Para dudas, sugerencias o fallos, deja una reseña o usa la sección de asistencia de la página de SpoilGuard en la tienda de extensiones de tu navegador. Se leen todos los mensajes.</p>']]},
+ca: { name: 'Català', t: 'Política de privadesa', u: 'Darrera actualització: 17 de novembre de 2026 · Versió 1.0',
+ lead: '<strong>SpoilGuard no recull, no comparteix i no ven cap dada teva.</strong> No té servidor. Tot passa dins del teu navegador, i funciona fins i tot sense connexió a internet.',
+ s: [
+ ['Què desa SpoilGuard i on', '<p>Només el que configures tu: les teves llistes de paraules i excepcions, els ajustaments (idioma, colors, icona), les webs que has afegit i un comptador de spoilers ocults. Tot es desa a l’emmagatzematge local del navegador, al teu ordinador.</p>'],
+ ['Què llegeix i què no desa', '<p>Per saber què tapar, SpoilGuard llegeix el text de la pàgina que tens oberta, en el moment, i el compara amb les teves llistes. Aquest text mai no es desa, ni es registra, ni s’envia enlloc. SpoilGuard no desa el teu historial.</p>'],
+ ['Sincronització (opcional)', '<p>Està apagada si no l’encens. Si ho fas, una còpia de les llistes i ajustaments la desa <em>la sincronització del teu navegador</em> al teu compte, com les adreces d’interès. SpoilGuard continua sense connectar-se a res. Si l’apagues, la còpia s’esborra del compte.</p>'],
+ ['Permisos', '<ul><li><strong>Emmagatzematge</strong>: per desar les llistes i els ajustaments.</li><li><strong>Google, X, YouTube, Instagram, Reddit, Facebook, Threads, Bluesky, TikTok i Twitch</strong>: per tapar els spoilers en aquestes webs.</li><li><strong>Altres webs, només si les afegeixes</strong>: el navegador et pregunta web a web.</li><li><strong>Pestanya activa</strong>: per saber a quina web ets quan prems «Protegir també aquesta web».</li><li><strong>Scripting</strong>: per activar el filtre a les webs que has afegit.</li><li><strong>Menús contextuals</strong>: per a l’opció del clic dret «Vetar a SpoilGuard». La pots treure a Ajustaments.</li></ul>'],
+ ['Comprova-ho tu', '<p>No cal que ens creguis:</p><ol><li><strong>Desconnecta’t.</strong> Apaga el wifi: SpoilGuard continua funcionant.</li><li><strong>Mira la xarxa.</strong> Prem <kbd>F12</kbd>, obre la pestanya <em>Xarxa</em> i fes servir SpoilGuard: no hi veuràs cap petició seva.</li><li><strong>Llegeix el codi.</strong> Tot el codi va dins l’extensió, llegible i sense ofuscar.</li></ol>'],
+ ['Enllaços externs', '<p>El botó de Ko-fi (propina opcional) i enllaços com aquesta política només obren una pàgina quan els prems, i SpoilGuard no hi envia res. Ko-fi és un servei independent amb la seva pròpia política. Donar propina no desbloqueja res: SpoilGuard és complet i gratuït.</p>'],
+ ['Menors', '<p>SpoilGuard no recull dades de ningú, tampoc de menors. No té anuncis, comptes ni xats.</p>'],
+ ['Canvis', '<p>Si mai calgués tractar dades d’una altra manera, se t’avisaria clarament dins l’extensió abans del canvi, s’actualitzaria aquesta pàgina i res no canviaria sense el teu consentiment.</p>'],
+ ['Contacte', '<p>Per a dubtes, suggeriments o errors, deixa una ressenya o fes servir la secció d’assistència de la pàgina de SpoilGuard a la botiga d’extensions del teu navegador. Es llegeixen tots els missatges.</p>']]},
+fr: { name: 'Français', t: 'Politique de confidentialité', u: 'Dernière mise à jour : 17 novembre 2026 · Version 1.0',
+ lead: '<strong>SpoilGuard ne collecte, ne partage et ne vend aucune de vos données.</strong> Il n’a pas de serveur. Tout se passe dans votre navigateur, et il fonctionne même sans connexion internet.',
+ s: [
+ ['Ce que SpoilGuard enregistre, et où', '<p>Uniquement ce que vous configurez : vos listes de mots et exceptions, vos réglages (langue, couleurs, icône), les sites ajoutés et un compteur de spoilers masqués. Tout reste dans le stockage local de votre navigateur, sur votre ordinateur.</p>'],
+ ['Ce qu’il lit, et ce qu’il ne garde pas', '<p>Pour savoir quoi masquer, SpoilGuard lit le texte de la page ouverte, sur le moment, et le compare à vos listes. Ce texte n’est jamais enregistré ni envoyé. SpoilGuard ne garde pas votre historique.</p>'],
+ ['Synchronisation (facultative)', '<p>Désactivée sauf si vous l’activez. Dans ce cas, une copie de vos listes et réglages est stockée par <em>la synchronisation de votre navigateur</em> dans votre compte, comme vos favoris. SpoilGuard ne se connecte toujours à rien. En la désactivant, la copie est supprimée.</p>'],
+ ['Autorisations', '<ul><li><strong>Stockage</strong> : pour garder vos listes et réglages.</li><li><strong>Google, X, YouTube, Instagram, Reddit, Facebook, Threads, Bluesky, TikTok et Twitch</strong> : pour masquer les spoilers sur ces sites.</li><li><strong>Autres sites, seulement si vous les ajoutez</strong> : le navigateur demande site par site.</li><li><strong>Onglet actif</strong> : pour savoir sur quel site vous êtes quand vous appuyez sur « Protéger aussi ce site ».</li><li><strong>Scripting</strong> : pour activer le filtre sur les sites ajoutés.</li><li><strong>Menus contextuels</strong> : pour l’option du clic droit « Bloquer avec SpoilGuard ». Vous pouvez la désactiver dans les Réglages.</li></ul>'],
+ ['Vérifiez par vous-même', '<ol><li><strong>Déconnectez-vous.</strong> Coupez le Wi-Fi : SpoilGuard continue de fonctionner.</li><li><strong>Observez le réseau.</strong> Appuyez sur <kbd>F12</kbd>, ouvrez l’onglet <em>Réseau</em> et utilisez SpoilGuard : aucune requête de sa part.</li><li><strong>Lisez le code.</strong> Tout le code est dans l’extension, lisible et non obfusqué.</li></ol>'],
+ ['Liens externes', '<p>Le bouton Ko-fi (pourboire facultatif) et les liens comme cette politique n’ouvrent une page que si vous cliquez, et SpoilGuard n’envoie rien. Ko-fi est un service indépendant. Un pourboire ne débloque rien : SpoilGuard est complet et gratuit.</p>'],
+ ['Enfants', '<p>SpoilGuard ne collecte de données sur personne, enfants compris. Ni publicité, ni comptes, ni chats.</p>'],
+ ['Modifications', '<p>Si SpoilGuard devait un jour traiter des données autrement, vous seriez prévenu clairement dans l’extension avant le changement, cette page serait mise à jour et rien ne changerait sans votre accord.</p>'],
+ ['Contact', '<p>Pour toute question, suggestion ou bug, laissez un avis ou utilisez la section d’assistance de la page de SpoilGuard dans la boutique d’extensions de votre navigateur. Chaque message est lu.</p>']]},
+de: { name: 'Deutsch', t: 'Datenschutzerklärung', u: 'Zuletzt aktualisiert: 17. November 2026 · Version 1.0',
+ lead: '<strong>SpoilGuard sammelt, teilt und verkauft keine deiner Daten.</strong> Es hat keinen Server. Alles passiert in deinem Browser, und es funktioniert sogar ganz ohne Internet.',
+ s: [
+ ['Was SpoilGuard speichert und wo', '<p>Nur, was du selbst einstellst: deine Wortlisten und Ausnahmen, deine Einstellungen (Sprache, Farben, Symbol), hinzugefügte Websites und einen Zähler ausgeblendeter Spoiler. Alles liegt im lokalen Speicher deines Browsers auf deinem Computer.</p>'],
+ ['Was es liest und was es nicht behält', '<p>Um zu wissen, was es abdecken soll, liest SpoilGuard den Text der offenen Seite in dem Moment und vergleicht ihn mit deinen Listen. Dieser Text wird nie gespeichert oder gesendet. SpoilGuard speichert keinen Verlauf.</p>'],
+ ['Synchronisierung (optional)', '<p>Aus, solange du sie nicht einschaltest. Dann speichert <em>die Synchronisierung deines Browsers</em> eine Kopie deiner Listen und Einstellungen in deinem Konto, wie deine Lesezeichen. SpoilGuard selbst verbindet sich weiterhin mit nichts. Beim Ausschalten wird die Kopie gelöscht.</p>'],
+ ['Berechtigungen', '<ul><li><strong>Speicher</strong>: für deine Listen und Einstellungen.</li><li><strong>Google, X, YouTube, Instagram, Reddit, Facebook, Threads, Bluesky, TikTok und Twitch</strong>: um dort Spoiler abzudecken.</li><li><strong>Andere Seiten, nur wenn du sie hinzufügst</strong>: der Browser fragt Seite für Seite.</li><li><strong>Aktiver Tab</strong>: um zu wissen, auf welcher Seite du bist, wenn du „Auch diese Seite schützen“ drückst.</li><li><strong>Scripting</strong>: um den Filter auf hinzugefügten Seiten zu aktivieren.</li><li><strong>Kontextmenüs</strong>: für die Rechtsklick-Option „Mit SpoilGuard sperren“. Du kannst sie in den Einstellungen ausschalten.</li></ul>'],
+ ['Prüf es selbst', '<ol><li><strong>Geh offline.</strong> Schalte das WLAN aus: SpoilGuard funktioniert weiter.</li><li><strong>Beobachte das Netzwerk.</strong> Drück <kbd>F12</kbd>, öffne den Tab <em>Netzwerk</em> und nutze SpoilGuard: keine einzige Anfrage von ihm.</li><li><strong>Lies den Code.</strong> Der gesamte Code steckt lesbar und unverschleiert in der Erweiterung.</li></ol>'],
+ ['Externe Links', '<p>Der Ko-fi-Knopf (freiwilliges Trinkgeld) und Links wie diese Erklärung öffnen nur beim Anklicken eine Seite, und SpoilGuard sendet nichts mit. Ko-fi ist ein eigenständiger Dienst. Trinkgeld schaltet nichts frei: SpoilGuard ist vollständig und kostenlos.</p>'],
+ ['Kinder', '<p>SpoilGuard sammelt von niemandem Daten, auch nicht von Kindern. Keine Werbung, keine Konten, keine Chats.</p>'],
+ ['Änderungen', '<p>Müsste SpoilGuard Daten je anders behandeln, würdest du vorher in der Erweiterung klar informiert, diese Seite würde aktualisiert und nichts würde sich ohne deine Zustimmung ändern.</p>'],
+ ['Kontakt', '<p>Für Fragen, Vorschläge oder Fehler hinterlasse eine Bewertung oder nutze den Support-Bereich auf der SpoilGuard-Seite im Erweiterungs-Store deines Browsers. Jede Nachricht wird gelesen.</p>']]},
+it: { name: 'Italiano', t: 'Informativa sulla privacy', u: 'Ultimo aggiornamento: 17 novembre 2026 · Versione 1.0',
+ lead: '<strong>SpoilGuard non raccoglie, non condivide e non vende nessun tuo dato.</strong> Non ha server. Tutto avviene nel tuo browser, e funziona anche senza connessione a internet.',
+ s: [
+ ['Cosa salva SpoilGuard e dove', '<p>Solo ciò che imposti tu: liste di parole ed eccezioni, impostazioni (lingua, colori, icona), siti aggiunti e un contatore di spoiler nascosti. Tutto resta nella memoria locale del browser, sul tuo computer.</p>'],
+ ['Cosa legge e cosa non conserva', '<p>Per sapere cosa coprire, SpoilGuard legge il testo della pagina aperta, sul momento, e lo confronta con le tue liste. Quel testo non viene mai salvato né inviato. SpoilGuard non conserva la cronologia.</p>'],
+ ['Sincronizzazione (facoltativa)', '<p>Spenta finché non la attivi. In quel caso una copia di liste e impostazioni viene salvata dalla <em>sincronizzazione del tuo browser</em> nel tuo account, come i preferiti. SpoilGuard continua a non collegarsi a niente. Disattivandola, la copia viene cancellata.</p>'],
+ ['Permessi', '<ul><li><strong>Archiviazione</strong>: per salvare liste e impostazioni.</li><li><strong>Google, X, YouTube, Instagram, Reddit, Facebook, Threads, Bluesky, TikTok e Twitch</strong>: per coprire gli spoiler su quei siti.</li><li><strong>Altri siti, solo se li aggiungi</strong>: il browser chiede sito per sito.</li><li><strong>Scheda attiva</strong>: per sapere su che sito sei quando premi «Proteggi anche questo sito».</li><li><strong>Scripting</strong>: per attivare il filtro sui siti aggiunti.</li><li><strong>Menu contestuali</strong>: per l’opzione del clic destro «Vieta con SpoilGuard». Puoi disattivarla nelle Impostazioni.</li></ul>'],
+ ['Controlla tu stesso', '<ol><li><strong>Vai offline.</strong> Spegni il Wi-Fi: SpoilGuard continua a funzionare.</li><li><strong>Guarda la rete.</strong> Premi <kbd>F12</kbd>, apri la scheda <em>Rete</em> e usa SpoilGuard: nessuna sua richiesta.</li><li><strong>Leggi il codice.</strong> Tutto il codice è nell’estensione, leggibile e non offuscato.</li></ol>'],
+ ['Link esterni', '<p>Il pulsante Ko-fi (mancia facoltativa) e link come questa informativa aprono una pagina solo se li clicchi, e SpoilGuard non invia niente. Ko-fi è un servizio indipendente. La mancia non sblocca niente: SpoilGuard è completo e gratuito.</p>'],
+ ['Minori', '<p>SpoilGuard non raccoglie dati di nessuno, minori compresi. Niente pubblicità, account o chat.</p>'],
+ ['Modifiche', '<p>Se un giorno SpoilGuard dovesse trattare i dati diversamente, verresti avvisato chiaramente nell’estensione prima della modifica, questa pagina verrebbe aggiornata e nulla cambierebbe senza il tuo consenso.</p>'],
+ ['Contatti', '<p>Per domande, suggerimenti o bug, lascia una recensione o usa la sezione assistenza della pagina di SpoilGuard nello store di estensioni del tuo browser. Ogni messaggio viene letto.</p>']]},
+nl: { name: 'Nederlands', t: 'Privacybeleid', u: 'Laatst bijgewerkt: 17 november 2026 · Versie 1.0',
+ lead: '<strong>SpoilGuard verzamelt, deelt en verkoopt geen enkele gegevens van je.</strong> Het heeft geen server. Alles gebeurt in je browser, en het werkt zelfs zonder internet.',
+ s: [
+ ['Wat SpoilGuard bewaart en waar', '<p>Alleen wat je zelf instelt: je woordenlijsten en uitzonderingen, je instellingen (taal, kleuren, pictogram), toegevoegde websites en een teller van verborgen spoilers. Alles staat in de lokale opslag van je browser, op je eigen computer.</p>'],
+ ['Wat het leest en niet bewaart', '<p>Om te weten wat het moet afdekken, leest SpoilGuard op dat moment de tekst van de open pagina en vergelijkt die met je lijsten. Die tekst wordt nooit opgeslagen of verstuurd. SpoilGuard bewaart geen geschiedenis.</p>'],
+ ['Synchronisatie (optioneel)', '<p>Uit, tenzij je het aanzet. Dan bewaart <em>de synchronisatie van je browser</em> een kopie van je lijsten en instellingen in je account, net als je bladwijzers. SpoilGuard maakt zelf nog steeds geen verbinding. Zet je het uit, dan wordt de kopie verwijderd.</p>'],
+ ['Rechten', '<ul><li><strong>Opslag</strong>: voor je lijsten en instellingen.</li><li><strong>Google, X, YouTube, Instagram, Reddit, Facebook, Threads, Bluesky, TikTok en Twitch</strong>: om daar spoilers af te dekken.</li><li><strong>Andere sites, alleen als je ze toevoegt</strong>: de browser vraagt het per site.</li><li><strong>Actief tabblad</strong>: om te weten op welke site je bent als je op “Ook deze site beschermen” drukt.</li><li><strong>Scripting</strong>: om het filter op toegevoegde sites aan te zetten.</li><li><strong>Contextmenu’s</strong>: voor de rechtsklikoptie “Blokkeren met SpoilGuard”. Je kunt dit uitzetten in Instellingen.</li></ul>'],
+ ['Controleer het zelf', '<ol><li><strong>Ga offline.</strong> Zet je wifi uit: SpoilGuard blijft werken.</li><li><strong>Bekijk het netwerk.</strong> Druk op <kbd>F12</kbd>, open het tabblad <em>Netwerk</em> en gebruik SpoilGuard: geen enkel verzoek van SpoilGuard.</li><li><strong>Lees de code.</strong> Alle code zit leesbaar en niet versluierd in de extensie.</li></ol>'],
+ ['Externe links', '<p>De Ko-fi-knop (vrijwillige fooi) en links zoals dit beleid openen alleen een pagina als je erop klikt, en SpoilGuard stuurt niets mee. Ko-fi is een zelfstandige dienst. Een fooi ontgrendelt niets: SpoilGuard is compleet en gratis.</p>'],
+ ['Kinderen', '<p>SpoilGuard verzamelt van niemand gegevens, ook niet van kinderen. Geen advertenties, accounts of chats.</p>'],
+ ['Wijzigingen', '<p>Zou SpoilGuard ooit anders met gegevens moeten omgaan, dan krijg je dat vooraf duidelijk te horen in de extensie, wordt deze pagina bijgewerkt en verandert er niets zonder je toestemming.</p>'],
+ ['Contact', '<p>Voor vragen, suggesties of fouten laat je een review achter of gebruik je het ondersteuningsgedeelte op de SpoilGuard-pagina in de extensiewinkel van je browser. Elk bericht wordt gelezen.</p>']]},
+pl: { name: 'Polski', t: 'Polityka prywatności', u: 'Ostatnia aktualizacja: 17 listopada 2026 · Wersja 1.0',
+ lead: '<strong>SpoilGuard nie zbiera, nie udostępnia i nie sprzedaje żadnych twoich danych.</strong> Nie ma serwera. Wszystko dzieje się w twojej przeglądarce i działa nawet bez internetu.',
+ s: [
+ ['Co SpoilGuard zapisuje i gdzie', '<p>Tylko to, co sam ustawisz: listy słów i wyjątki, ustawienia (język, kolory, ikona), dodane strony i licznik ukrytych spoilerów. Wszystko zostaje w lokalnej pamięci przeglądarki, na twoim komputerze.</p>'],
+ ['Co czyta i czego nie zachowuje', '<p>Aby wiedzieć, co zasłonić, SpoilGuard czyta tekst otwartej strony w danej chwili i porównuje go z twoimi listami. Ten tekst nigdy nie jest zapisywany ani wysyłany. SpoilGuard nie przechowuje historii.</p>'],
+ ['Synchronizacja (opcjonalna)', '<p>Wyłączona, dopóki jej nie włączysz. Wtedy kopię list i ustawień przechowuje <em>synchronizacja twojej przeglądarki</em> na twoim koncie, jak zakładki. SpoilGuard nadal sam niczego nie łączy. Po wyłączeniu kopia jest usuwana.</p>'],
+ ['Uprawnienia', '<ul><li><strong>Pamięć</strong>: na listy i ustawienia.</li><li><strong>Google, X, YouTube, Instagram, Reddit, Facebook, Threads, Bluesky, TikTok i Twitch</strong>: aby zasłaniać tam spoilery.</li><li><strong>Inne strony, tylko jeśli je dodasz</strong>: przeglądarka pyta o każdą osobno.</li><li><strong>Aktywna karta</strong>: aby wiedzieć, na jakiej stronie jesteś, gdy naciśniesz „Chroń też tę stronę”.</li><li><strong>Scripting</strong>: aby włączyć filtr na dodanych stronach.</li><li><strong>Menu kontekstowe</strong>: dla opcji prawego przycisku „Zablokuj w SpoilGuard”. Możesz ją wyłączyć w Ustawieniach.</li></ul>'],
+ ['Sprawdź sam', '<ol><li><strong>Odłącz internet.</strong> Wyłącz wi-fi: SpoilGuard dalej działa.</li><li><strong>Obserwuj sieć.</strong> Naciśnij <kbd>F12</kbd>, otwórz kartę <em>Sieć</em> i używaj SpoilGuard: żadnego jego żądania.</li><li><strong>Przeczytaj kod.</strong> Cały kod jest w rozszerzeniu, czytelny i nieukryty.</li></ol>'],
+ ['Linki zewnętrzne', '<p>Przycisk Ko-fi (dobrowolny napiwek) i linki takie jak ta polityka otwierają stronę tylko po kliknięciu, a SpoilGuard niczego nie wysyła. Ko-fi to niezależna usługa. Napiwek niczego nie odblokowuje: SpoilGuard jest kompletny i darmowy.</p>'],
+ ['Dzieci', '<p>SpoilGuard nie zbiera danych od nikogo, także od dzieci. Bez reklam, kont i czatów.</p>'],
+ ['Zmiany', '<p>Gdyby SpoilGuard kiedyś musiał inaczej traktować dane, zostaniesz o tym wyraźnie poinformowany w rozszerzeniu przed zmianą, ta strona zostanie zaktualizowana i nic nie zmieni się bez twojej zgody.</p>'],
+ ['Kontakt', '<p>W sprawie pytań, sugestii lub błędów zostaw opinię albo skorzystaj z sekcji pomocy na stronie SpoilGuard w sklepie z rozszerzeniami twojej przeglądarki. Każda wiadomość jest czytana.</p>']]},
+'pt-BR': { name: 'Português (Brasil)', t: 'Política de privacidade', u: 'Última atualização: 17 de novembro de 2026 · Versão 1.0',
+ lead: '<strong>O SpoilGuard não coleta, não compartilha e não vende nenhum dado seu.</strong> Ele não tem servidor. Tudo acontece no seu navegador, e funciona até sem internet.',
+ s: [
+ ['O que o SpoilGuard guarda e onde', '<p>Só o que você configura: suas listas de palavras e exceções, seus ajustes (idioma, cores, ícone), os sites adicionados e um contador de spoilers escondidos. Tudo fica no armazenamento local do navegador, no seu computador.</p>'],
+ ['O que ele lê e o que não guarda', '<p>Para saber o que cobrir, o SpoilGuard lê o texto da página aberta, na hora, e compara com suas listas. Esse texto nunca é salvo nem enviado. O SpoilGuard não guarda seu histórico.</p>'],
+ ['Sincronização (opcional)', '<p>Desligada a menos que você ligue. Nesse caso, uma cópia das listas e ajustes é guardada pela <em>sincronização do seu navegador</em> na sua conta, como os favoritos. O SpoilGuard continua sem se conectar a nada. Ao desligar, a cópia é apagada.</p>'],
+ ['Permissões', '<ul><li><strong>Armazenamento</strong>: para guardar listas e ajustes.</li><li><strong>Google, X, YouTube, Instagram, Reddit, Facebook, Threads, Bluesky, TikTok e Twitch</strong>: para cobrir spoilers nesses sites.</li><li><strong>Outros sites, só se você adicionar</strong>: o navegador pergunta site por site.</li><li><strong>Aba ativa</strong>: para saber em que site você está ao tocar em “Proteger também este site”.</li><li><strong>Scripting</strong>: para ligar o filtro nos sites adicionados.</li><li><strong>Menus de contexto</strong>: para a opção do botão direito “Bloquear no SpoilGuard”. Você pode desligá-la nos Ajustes.</li></ul>'],
+ ['Confira você mesmo', '<ol><li><strong>Fique offline.</strong> Desligue o wi-fi: o SpoilGuard continua funcionando.</li><li><strong>Observe a rede.</strong> Aperte <kbd>F12</kbd>, abra a aba <em>Rede</em> e use o SpoilGuard: nenhuma requisição dele.</li><li><strong>Leia o código.</strong> Todo o código está na extensão, legível e sem ofuscação.</li></ol>'],
+ ['Links externos', '<p>O botão do Ko-fi (gorjeta opcional) e links como esta política só abrem uma página quando você clica, e o SpoilGuard não envia nada. O Ko-fi é um serviço independente. A gorjeta não desbloqueia nada: o SpoilGuard é completo e grátis.</p>'],
+ ['Crianças', '<p>O SpoilGuard não coleta dados de ninguém, nem de crianças. Sem anúncios, contas ou chats.</p>'],
+ ['Mudanças', '<p>Se um dia o SpoilGuard precisar tratar dados de outro jeito, você será avisado com clareza dentro da extensão antes da mudança, esta página será atualizada e nada mudará sem o seu consentimento.</p>'],
+ ['Contato', '<p>Para dúvidas, sugestões ou bugs, deixe uma avaliação ou use a seção de suporte da página do SpoilGuard na loja de extensões do seu navegador. Todas as mensagens são lidas.</p>']]},
+'pt-PT': { name: 'Português (Portugal)', t: 'Política de privacidade', u: 'Última atualização: 17 de novembro de 2026 · Versão 1.0',
+ lead: '<strong>O SpoilGuard não recolhe, não partilha e não vende nenhum dado teu.</strong> Não tem servidor. Tudo acontece no teu navegador, e funciona mesmo sem internet.',
+ s: [
+ ['O que o SpoilGuard guarda e onde', '<p>Só o que configuras: as tuas listas de palavras e exceções, as tuas definições (idioma, cores, ícone), os sites adicionados e um contador de spoilers escondidos. Tudo fica no armazenamento local do navegador, no teu computador.</p>'],
+ ['O que lê e o que não guarda', '<p>Para saber o que tapar, o SpoilGuard lê o texto da página aberta, no momento, e compara-o com as tuas listas. Esse texto nunca é guardado nem enviado. O SpoilGuard não guarda o teu histórico.</p>'],
+ ['Sincronização (opcional)', '<p>Desligada, a não ser que a ligues. Nesse caso, uma cópia das listas e definições é guardada pela <em>sincronização do teu navegador</em> na tua conta, como os marcadores. O SpoilGuard continua sem se ligar a nada. Ao desligar, a cópia é apagada.</p>'],
+ ['Permissões', '<ul><li><strong>Armazenamento</strong>: para guardar listas e definições.</li><li><strong>Google, X, YouTube, Instagram, Reddit, Facebook, Threads, Bluesky, TikTok e Twitch</strong>: para tapar spoilers nesses sites.</li><li><strong>Outros sites, só se os adicionares</strong>: o navegador pergunta site a site.</li><li><strong>Separador ativo</strong>: para saber em que site estás ao carregar em «Proteger também este site».</li><li><strong>Scripting</strong>: para ligar o filtro nos sites adicionados.</li><li><strong>Menus de contexto</strong>: para a opção do botão direito «Bloquear no SpoilGuard». Podes desligá-la nas Definições.</li></ul>'],
+ ['Confirma tu mesmo', '<ol><li><strong>Fica offline.</strong> Desliga o wi-fi: o SpoilGuard continua a funcionar.</li><li><strong>Observa a rede.</strong> Carrega em <kbd>F12</kbd>, abre o separador <em>Rede</em> e usa o SpoilGuard: nenhum pedido dele.</li><li><strong>Lê o código.</strong> Todo o código está na extensão, legível e sem ofuscação.</li></ol>'],
+ ['Ligações externas', '<p>O botão do Ko-fi (gorjeta opcional) e ligações como esta política só abrem uma página quando clicas, e o SpoilGuard não envia nada. O Ko-fi é um serviço independente. A gorjeta não desbloqueia nada: o SpoilGuard é completo e gratuito.</p>'],
+ ['Crianças', '<p>O SpoilGuard não recolhe dados de ninguém, nem de crianças. Sem anúncios, contas ou chats.</p>'],
+ ['Alterações', '<p>Se um dia o SpoilGuard tiver de tratar dados de outra forma, serás avisado claramente na extensão antes da alteração, esta página será atualizada e nada mudará sem o teu consentimento.</p>'],
+ ['Contacto', '<p>Para dúvidas, sugestões ou erros, deixa uma avaliação ou usa a secção de suporte da página do SpoilGuard na loja de extensões do teu navegador. Todas as mensagens são lidas.</p>']]},
+tr: { name: 'Türkçe', t: 'Gizlilik politikası', u: 'Son güncelleme: 17 Kasım 2026 · Sürüm 1.0',
+ lead: '<strong>SpoilGuard hiçbir verini toplamaz, paylaşmaz veya satmaz.</strong> Sunucusu yoktur. Her şey tarayıcında olur ve internet bağlantısı olmadan bile çalışır.',
+ s: [
+ ['SpoilGuard neyi nerede saklar', '<p>Sadece senin ayarladıklarını: kelime listelerin ve istisnaların, ayarların (dil, renkler, simge), eklediğin siteler ve gizlenen spoiler sayacı. Hepsi kendi bilgisayarında, tarayıcının yerel depolamasında durur.</p>'],
+ ['Neyi okur, neyi saklamaz', '<p>Neyi kapatacağını bilmek için SpoilGuard açık sayfanın metnini o anda okur ve listelerinle karşılaştırır. Bu metin asla kaydedilmez veya gönderilmez. SpoilGuard geçmişini saklamaz.</p>'],
+ ['Senkronizasyon (isteğe bağlı)', '<p>Sen açmadıkça kapalıdır. Açarsan, listelerinin ve ayarlarının bir kopyası yer işaretlerinde olduğu gibi <em>tarayıcının kendi senkronizasyonu</em> tarafından hesabında saklanır. SpoilGuard yine hiçbir yere bağlanmaz. Kapatınca kopya silinir.</p>'],
+ ['İzinler', '<ul><li><strong>Depolama</strong>: listelerini ve ayarlarını saklamak için.</li><li><strong>Google, X, YouTube, Instagram, Reddit, Facebook, Threads, Bluesky, TikTok ve Twitch</strong>: bu sitelerde spoilerları kapatmak için.</li><li><strong>Diğer siteler, sadece sen eklersen</strong>: tarayıcı her site için ayrı sorar.</li><li><strong>Etkin sekme</strong>: “Bu siteyi de koru”ya bastığında hangi sitede olduğunu bilmek için.</li><li><strong>Scripting</strong>: eklediğin sitelerde filtreyi açmak için.</li><li><strong>Bağlam menüleri</strong>: sağ tık seçeneği “SpoilGuard ile engelle” için. Ayarlar’dan kapatabilirsin.</li></ul>'],
+ ['Kendin kontrol et', '<ol><li><strong>Çevrimdışı ol.</strong> Wi-Fi’ı kapat: SpoilGuard çalışmaya devam eder.</li><li><strong>Ağı izle.</strong> <kbd>F12</kbd>’ye bas, <em>Ağ</em> sekmesini aç ve SpoilGuard’ı kullan: ondan tek bir istek bile görmezsin.</li><li><strong>Kodu oku.</strong> Tüm kod uzantının içinde, okunabilir ve gizlenmemiş halde.</li></ol>'],
+ ['Dış bağlantılar', '<p>Ko-fi düğmesi (isteğe bağlı bahşiş) ve bu politika gibi bağlantılar sadece tıkladığında bir sayfa açar ve SpoilGuard hiçbir şey göndermez. Ko-fi bağımsız bir hizmettir. Bahşiş hiçbir şeyin kilidini açmaz: SpoilGuard eksiksiz ve ücretsizdir.</p>'],
+ ['Çocuklar', '<p>SpoilGuard kimseden veri toplamaz, çocuklardan da. Reklam, hesap veya sohbet yoktur.</p>'],
+ ['Değişiklikler', '<p>SpoilGuard bir gün verileri farklı işlemek zorunda kalırsa, değişiklikten önce uzantı içinde açıkça bilgilendirilirsin, bu sayfa güncellenir ve iznin olmadan hiçbir şey değişmez.</p>'],
+ ['İletişim', '<p>Sorular, öneriler veya hatalar için tarayıcının uzantı mağazasındaki SpoilGuard sayfasında yorum bırak ya da destek bölümünü kullan. Her mesaj okunur.</p>']]},
+ru: { name: 'Русский', t: 'Политика конфиденциальности', u: 'Последнее обновление: 17 ноября 2026 · Версия 1.0',
+ lead: '<strong>SpoilGuard не собирает, не передаёт и не продаёт никаких ваших данных.</strong> У него нет сервера. Всё происходит в вашем браузере, и он работает даже без интернета.',
+ s: [
+ ['Что SpoilGuard хранит и где', '<p>Только то, что вы настроили сами: списки слов и исключения, настройки (язык, цвета, значок), добавленные сайты и счётчик скрытых спойлеров. Всё хранится в локальном хранилище браузера на вашем компьютере.</p>'],
+ ['Что он читает и чего не хранит', '<p>Чтобы понять, что закрыть, SpoilGuard читает текст открытой страницы в момент просмотра и сравнивает его с вашими списками. Этот текст никогда не сохраняется и не отправляется. SpoilGuard не хранит историю.</p>'],
+ ['Синхронизация (по желанию)', '<p>Выключена, пока вы её не включите. Тогда копию списков и настроек хранит <em>синхронизация вашего браузера</em> в вашем аккаунте, как закладки. Сам SpoilGuard по-прежнему никуда не подключается. При выключении копия удаляется.</p>'],
+ ['Разрешения', '<ul><li><strong>Хранилище</strong>: для списков и настроек.</li><li><strong>Google, X, YouTube, Instagram, Reddit, Facebook, Threads, Bluesky, TikTok и Twitch</strong>: чтобы закрывать спойлеры на этих сайтах.</li><li><strong>Другие сайты, только если вы их добавите</strong>: браузер спрашивает отдельно для каждого.</li><li><strong>Активная вкладка</strong>: чтобы знать, на каком вы сайте, когда нажимаете «Защищать и этот сайт».</li><li><strong>Scripting</strong>: чтобы включать фильтр на добавленных сайтах.</li><li><strong>Контекстные меню</strong>: для пункта правой кнопки «Запретить в SpoilGuard». Его можно отключить в Настройках.</li></ul>'],
+ ['Проверьте сами', '<ol><li><strong>Отключитесь от сети.</strong> Выключите Wi-Fi: SpoilGuard продолжит работать.</li><li><strong>Посмотрите сеть.</strong> Нажмите <kbd>F12</kbd>, откройте вкладку <em>Сеть</em> и пользуйтесь SpoilGuard: ни одного его запроса.</li><li><strong>Прочитайте код.</strong> Весь код находится в расширении, читаемый и не запутанный.</li></ol>'],
+ ['Внешние ссылки', '<p>Кнопка Ko-fi (добровольные чаевые) и ссылки вроде этой политики открывают страницу только по щелчку, и SpoilGuard ничего с ними не отправляет. Ko-fi — независимый сервис. Чаевые ничего не открывают: SpoilGuard полный и бесплатный.</p>'],
+ ['Дети', '<p>SpoilGuard ни у кого не собирает данных, в том числе у детей. Нет рекламы, аккаунтов и чатов.</p>'],
+ ['Изменения', '<p>Если SpoilGuard когда-нибудь придётся обращаться с данными иначе, вас заранее чётко предупредят в расширении, эта страница будет обновлена, и ничего не изменится без вашего согласия.</p>'],
+ ['Связь', '<p>С вопросами, предложениями и ошибками оставьте отзыв или воспользуйтесь разделом поддержки на странице SpoilGuard в магазине расширений вашего браузера. Каждое сообщение читается.</p>']]},
+ja: { name: '日本語', t: 'プライバシーポリシー', u: '最終更新：2026年11月17日 · バージョン 1.0',
+ lead: '<strong>SpoilGuard はあなたのデータを収集・共有・販売しません。</strong>サーバーはありません。すべてブラウザの中で動き、インターネット接続がなくても使えます。',
+ s: [
+ ['SpoilGuard が保存するものと場所', '<p>保存するのはあなたが設定したものだけです：言葉のリストと例外、設定（言語・色・アイコン）、追加したサイト、隠したネタバレの数。すべてあなたのパソコンのブラウザ内のローカル保存領域に置かれます。</p>'],
+ ['読むもの、保存しないもの', '<p>何を隠すか判断するため、SpoilGuard は開いているページの文字をその場で読み、あなたのリストと照らし合わせます。その文字は保存も送信もされません。閲覧履歴も保存しません。</p>'],
+ ['同期（任意）', '<p>オンにしない限りオフです。オンにすると、リストと設定のコピーがブックマークと同じように<em>ブラウザ自身の同期機能</em>によってあなたのアカウントに保存されます。SpoilGuard 自身はやはりどこにも接続しません。オフにするとコピーは削除されます。</p>'],
+ ['権限', '<ul><li><strong>ストレージ</strong>：リストと設定を保存するため。</li><li><strong>Google、X、YouTube、Instagram、Reddit、Facebook、Threads、Bluesky、TikTok、Twitch</strong>：これらのサイトでネタバレを隠すため。</li><li><strong>ほかのサイト（追加した場合のみ）</strong>：ブラウザがサイトごとに確認します。</li><li><strong>アクティブなタブ</strong>：「このサイトも保護する」を押したときに今のサイトを知るため。</li><li><strong>スクリプト</strong>：追加したサイトでフィルターを有効にするため。</li><li><strong>コンテキストメニュー</strong>：右クリックの「SpoilGuard でブロック」のため。設定でオフにできます。</li></ul>'],
+ ['自分で確かめる', '<ol><li><strong>オフラインにする。</strong>Wi-Fi を切っても SpoilGuard は動き続けます。</li><li><strong>通信を見る。</strong><kbd>F12</kbd> を押して<em>ネットワーク</em>タブを開き、SpoilGuard を使ってみてください。SpoilGuard からの通信は一つもありません。</li><li><strong>コードを読む。</strong>コードはすべて拡張機能の中にあり、読める形で難読化されていません。</li></ol>'],
+ ['外部リンク', '<p>Ko-fi ボタン（任意のチップ）やこのポリシーのようなリンクは、クリックしたときだけページを開き、SpoilGuard は何も送りません。Ko-fi は独立したサービスです。チップで何かが解放されることはありません。SpoilGuard は完全版で無料です。</p>'],
+ ['子ども', '<p>SpoilGuard は誰のデータも集めないので、子どものデータも集めません。広告、アカウント、チャットもありません。</p>'],
+ ['変更', '<p>万一データの扱いを変える必要があれば、変更前に拡張機能の中ではっきりお知らせし、このページを更新します。あなたの同意なしに何かが変わることはありません。</p>'],
+ ['お問い合わせ', '<p>質問・提案・不具合は、ブラウザの拡張機能ストアにある SpoilGuard のページで、レビューを残すかサポート欄をご利用ください。すべてのメッセージに目を通しています。</p>']]},
+'zh-CN': { name: '简体中文', t: '隐私政策', u: '最后更新：2026 年 11 月 17 日 · 版本 1.0',
+ lead: '<strong>SpoilGuard 不收集、不分享、也不出售你的任何数据。</strong>它没有服务器。一切都在你的浏览器里完成，甚至不联网也能使用。',
+ s: [
+ ['SpoilGuard 保存什么、存在哪里', '<p>只保存你自己设置的内容：词语列表和例外、设置（语言、颜色、图标）、你添加的网站，以及已隐藏剧透的计数。全部保存在你电脑上浏览器的本地存储中。</p>'],
+ ['它读取什么、不保存什么', '<p>为了判断要遮住什么，SpoilGuard 会在当下读取打开页面的文字，并与你的列表比较。这些文字从不保存，也不发送。SpoilGuard 不保存你的浏览记录。</p>'],
+ ['同步（可选）', '<p>除非你开启，否则保持关闭。开启后，列表和设置的副本会像书签一样由<em>浏览器自带的同步功能</em>保存在你的账号中。SpoilGuard 本身依然不连接任何地方。关闭后副本会被删除。</p>'],
+ ['权限', '<ul><li><strong>存储</strong>：保存你的列表和设置。</li><li><strong>Google、X、YouTube、Instagram、Reddit、Facebook、Threads、Bluesky、TikTok 和 Twitch</strong>：在这些网站上遮住剧透。</li><li><strong>其他网站，仅在你添加时</strong>：浏览器会逐个网站征求许可。</li><li><strong>当前标签页</strong>：在你点“也保护这个网站”时知道你在哪个网站。</li><li><strong>脚本</strong>：在你添加的网站上开启过滤。</li><li><strong>右键菜单</strong>：用于“用 SpoilGuard 屏蔽”选项。可以在设置中关闭。</li></ul>'],
+ ['自己验证', '<ol><li><strong>断网。</strong>关掉 Wi-Fi，SpoilGuard 照常工作。</li><li><strong>查看网络。</strong>按 <kbd>F12</kbd>，打开<em>网络</em>标签，正常使用 SpoilGuard：看不到它发出的任何请求。</li><li><strong>阅读代码。</strong>所有代码都在扩展里，可读且未混淆。</li></ol>'],
+ ['外部链接', '<p>Ko-fi 按钮（自愿打赏）和本政策这样的链接只在你点击时打开页面，SpoilGuard 不会附带发送任何内容。Ko-fi 是独立的服务。打赏不会解锁任何东西：SpoilGuard 完整且免费。</p>'],
+ ['儿童', '<p>SpoilGuard 不收集任何人的数据，包括儿童。没有广告、账号或聊天。</p>'],
+ ['政策变更', '<p>如果有一天 SpoilGuard 需要以不同方式处理数据，会在变更前于扩展内明确告知你，并更新本页面；未经你同意，什么都不会改变。</p>'],
+ ['联系方式', '<p>如有问题、建议或发现错误，请在浏览器扩展商店的 SpoilGuard 页面留下评价或使用支持栏目。每条消息都会被阅读。</p>']]},
+ko: { name: '한국어', t: '개인정보 처리방침', u: '최종 업데이트: 2026년 11월 17일 · 버전 1.0',
+ lead: '<strong>SpoilGuard는 사용자의 데이터를 수집, 공유, 판매하지 않습니다.</strong> 서버가 없습니다. 모든 것이 브라우저 안에서 이루어지며, 인터넷 연결이 없어도 작동합니다.',
+ s: [
+ ['SpoilGuard가 저장하는 것과 위치', '<p>직접 설정한 것만 저장합니다: 단어 목록과 예외, 설정(언어, 색, 아이콘), 추가한 사이트, 숨긴 스포일러 수. 모두 내 컴퓨터의 브라우저 로컬 저장소에 보관됩니다.</p>'],
+ ['읽는 것과 저장하지 않는 것', '<p>무엇을 가릴지 판단하기 위해 SpoilGuard는 열린 페이지의 글자를 그 자리에서 읽고 목록과 비교합니다. 그 글자는 절대 저장되거나 전송되지 않습니다. 방문 기록도 저장하지 않습니다.</p>'],
+ ['동기화 (선택)', '<p>직접 켜지 않으면 꺼져 있습니다. 켜면 목록과 설정의 복사본을 북마크처럼 <em>브라우저 자체 동기화</em>가 내 계정에 저장합니다. SpoilGuard 자체는 여전히 어디에도 연결하지 않습니다. 끄면 복사본은 삭제됩니다.</p>'],
+ ['권한', '<ul><li><strong>저장소</strong>: 목록과 설정을 저장하기 위해.</li><li><strong>Google, X, YouTube, Instagram, Reddit, Facebook, Threads, Bluesky, TikTok, Twitch</strong>: 이 사이트에서 스포일러를 가리기 위해.</li><li><strong>다른 사이트 (추가한 경우에만)</strong>: 브라우저가 사이트마다 허락을 묻습니다.</li><li><strong>활성 탭</strong>: ‘이 사이트도 보호’를 누를 때 현재 사이트를 알기 위해.</li><li><strong>스크립트</strong>: 추가한 사이트에서 필터를 켜기 위해.</li><li><strong>컨텍스트 메뉴</strong>: 오른쪽 클릭 ‘SpoilGuard로 차단’ 옵션을 위해. 설정에서 끌 수 있습니다.</li></ul>'],
+ ['직접 확인하기', '<ol><li><strong>오프라인으로.</strong> 와이파이를 꺼도 SpoilGuard는 계속 작동합니다.</li><li><strong>네트워크 보기.</strong> <kbd>F12</kbd>를 누르고 <em>네트워크</em> 탭을 연 뒤 SpoilGuard를 써 보세요. SpoilGuard의 요청은 하나도 없습니다.</li><li><strong>코드 읽기.</strong> 모든 코드는 확장 프로그램 안에 있으며, 읽을 수 있고 난독화되지 않았습니다.</li></ol>'],
+ ['외부 링크', '<p>Ko-fi 버튼(선택적 후원)과 이 방침 같은 링크는 클릭할 때만 페이지를 열며, SpoilGuard는 아무것도 함께 보내지 않습니다. Ko-fi는 독립된 서비스입니다. 후원으로 잠금 해제되는 것은 없습니다. SpoilGuard는 완전하고 무료입니다.</p>'],
+ ['어린이', '<p>SpoilGuard는 누구의 데이터도 수집하지 않으므로 어린이의 데이터도 수집하지 않습니다. 광고, 계정, 채팅이 없습니다.</p>'],
+ ['변경', '<p>혹시 데이터를 다르게 다뤄야 한다면, 변경 전에 확장 프로그램 안에서 분명히 알리고 이 페이지를 업데이트하며, 동의 없이는 아무것도 바뀌지 않습니다.</p>'],
+ ['문의', '<p>질문, 제안, 오류는 브라우저 확장 프로그램 스토어의 SpoilGuard 페이지에서 리뷰를 남기거나 지원 섹션을 이용해 주세요. 모든 메시지를 읽습니다.</p>']]}
+};
+
+</script>
+<script>
+/* SpoilGuard · política de privacidad: dibuja el texto en el idioma elegido y gestiona el selector */
+(() => {
+  const P = globalThis.SG_PRIV, $ = s => document.querySelector(s);
+  const ORDER = ['en', 'es', 'ca', 'fr', 'de', 'it', 'nl', 'pl', 'pt-BR', 'pt-PT', 'tr', 'ru', 'ja', 'zh-CN', 'ko'];
+  const SEARCH = { en: 'Search…', es: 'Buscar…', ca: 'Cerca…', fr: 'Rechercher…', de: 'Suchen…', it: 'Cerca…', nl: 'Zoeken…', pl: 'Szukaj…', 'pt-BR': 'Buscar…', 'pt-PT': 'Pesquisar…', tr: 'Ara…', ru: 'Поиск…', ja: '検索…', 'zh-CN': '搜索…', ko: '검색…' };
+  const NONE = { en: 'No matches', es: 'Sin resultados', ca: 'Cap resultat', fr: 'Aucun résultat', de: 'Keine Treffer', it: 'Nessun risultato', nl: 'Geen resultaten', pl: 'Brak wyników', 'pt-BR': 'Nada encontrado', 'pt-PT': 'Sem resultados', tr: 'Sonuç yok', ru: 'Ничего не найдено', ja: '見つかりません', 'zh-CN': '无结果', ko: '결과 없음' };
+  const norm = s => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+  let cur = 'en', act = -1;
+
+  // texto propio y fijo del archivo de datos: no viene de la red ni del usuario
+  const render = (lang, keep) => {
+    const d = P[lang] || P.en;
+    cur = P[lang] ? lang : 'en';
+    const doc = $('#doc');
+    doc.innerHTML = `<h1>${d.t}</h1><p class="mut">${d.u}</p><p class="lead">${d.lead}</p>` +
+      d.s.map(([h, body]) => `<h2>${h}</h2>${body}`).join('');
+    doc.style.animation = 'none'; void doc.offsetWidth; doc.style.animation = '';
+    document.documentElement.lang = cur;
+    document.title = 'SpoilGuard · ' + d.t;
+    $('#langName').textContent = d.name;
+    $('#langSearch').placeholder = SEARCH[cur];
+    if (keep) try { history.replaceState(null, '', '?lang=' + cur); } catch (_) {} // solo si lo elige el usuario
+  };
+
+  const items = () => [...$('#langList').querySelectorAll('li[data-l]')];
+  const list = (q = '') => {
+    const n = norm(q.trim());
+    const hits = ORDER.filter(l => !n || norm(P[l].name).includes(n) || l.toLowerCase().startsWith(n));
+    $('#langList').innerHTML = hits.length
+      ? hits.map(l => `<li role="option" data-l="${l}" lang="${l}" aria-selected="${l === cur}">${P[l].name}</li>`).join('')
+      : `<li class="none">${NONE[cur]}</li>`;
+    act = -1;
+  };
+  const menu = $('#langMenu'), btn = $('#langBtn');
+  const open = () => { list(); $('#langSearch').value = ''; menu.classList.add('open'); btn.setAttribute('aria-expanded', 'true'); setTimeout(() => $('#langSearch').focus(), 30); };
+  const close = (focus) => { menu.classList.remove('open'); btn.setAttribute('aria-expanded', 'false'); if (focus) btn.focus(); };
+  const choose = l => { render(l, true); close(true); };
+
+  btn.addEventListener('click', () => menu.classList.contains('open') ? close() : open());
+  $('#langList').addEventListener('click', e => { const li = e.target.closest('li[data-l]'); if (li) choose(li.dataset.l); });
+  $('#langSearch').addEventListener('input', e => list(e.target.value));
+  menu.addEventListener('keydown', e => {
+    const it = items();
+    if (e.key === 'Escape') { e.preventDefault(); close(true); }
+    else if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+      e.preventDefault(); if (!it.length) return;
+      act = (act + (e.key === 'ArrowDown' ? 1 : -1) + it.length) % it.length;
+      it.forEach((li, i) => li.classList.toggle('act', i === act)); it[act].scrollIntoView({ block: 'nearest' });
+    } else if (e.key === 'Enter') { e.preventDefault(); const li = it[act] || (it.length === 1 && it[0]); if (li) choose(li.dataset.l); }
+  });
+  document.addEventListener('click', e => { if (!e.target.closest('.lang')) close(); });
+
+  // idioma: ?lang=xx; dentro de la extensión, el mismo que usa SpoilGuard; si no, inglés
+  const match = l => {
+    if (!l) return null;
+    if (P[l]) return l;
+    const low = l.toLowerCase();
+    if (low.startsWith('pt')) return /br/.test(low) ? 'pt-BR' : 'pt-PT';
+    if (low.startsWith('zh')) return 'zh-CN';
+    const base = low.split('-')[0];
+    return P[base] ? base : null;
+  };
+  const q = match(new URLSearchParams(location.search).get('lang'));
+  render(q || 'en');
+
+  // el icono y los acentos con el color del tema que haya elegido el usuario
+  const HUE = { violet: [248, 90], blue: [215, 90], teal: [184, 80], green: [148, 65], amber: [40, 95], orange: [22, 92], red: [355, 78], pink: [325, 80], graphite: [225, 8] };
+  try {
+    chrome.storage.local.get(['lang', 'ui']).then(({ lang, ui }) => {
+      const u = ui && HUE[ui.hue];
+      if (u) {
+        const r = document.documentElement.style;
+        r.setProperty('--g1', `hsl(${u[0]} ${u[1]}% 58%)`);
+        r.setProperty('--g2', `hsl(${u[0] + 22} ${u[1]}% 68%)`);
+        r.setProperty('--acc', `hsl(${u[0]} ${u[1]}% ${matchMedia('(prefers-color-scheme: dark)').matches ? 74 : 52}%)`);
+      }
+      if (!q) { const m = match(lang && lang !== 'auto' ? lang : navigator.language); if (m && m !== cur) render(m); }
+    }).catch(() => {});
+  } catch (_) {}
+})();
+
+</script>
+</body>
+</html>
