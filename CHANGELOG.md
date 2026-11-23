@@ -2,6 +2,27 @@
 
 _Versión en español: [CHANGELOG.es.md](CHANGELOG.es.md)_
 
+## 1.6 · 2026-11-23
+
+**⚡ Performance**
+
+- SG Engine V1.5: up to 20% faster than V1, with exactly the same results
+- Twitch: SpoilGuard now leaves the player and its internal frames completely alone, so streams load without trouble
+
+**📝 Lists & editor**
+
+- Redo arrow in the editor: puts back what you just undid
+
+**🔒 Privacy & data**
+
+- “Send a suggestion” now opens a simple form: no account needed
+
+**🛠️ Fixes**
+
+- The editor search no longer squeezes the row or pushes “Clean up and sort” out when you type
+- “Wasn’t a spoiler?” now saves only the comment’s text, without the date or the like count
+- Twitch with “all images”: the stream you open, emotes (7TV, BTTV and FFZ too), user badges and profile pictures are no longer blurred
+
 ## 1.5 · 2026-11-18
 
 **🧠 Engine & protection**

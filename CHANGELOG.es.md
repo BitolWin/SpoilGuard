@@ -2,6 +2,27 @@
 
 _English version: [CHANGELOG.md](CHANGELOG.md)_
 
+## 1.6 · 2026-11-23
+
+**⚡ Rendimiento**
+
+- SG Engine V1.5: hasta un 20 % más rápido que el V1, con exactamente los mismos resultados
+- Twitch: SpoilGuard deja totalmente en paz el reproductor y sus marcos internos, para que el directo cargue sin problemas
+
+**📝 Listas y editor**
+
+- Flecha de rehacer en el editor: vuelve a poner lo que acabas de deshacer
+
+**🔒 Privacidad y datos**
+
+- «Enviar sugerencia» abre ahora un formulario sencillo: no hace falta cuenta
+
+**🛠️ Correcciones**
+
+- El buscador del editor ya no se encoge ni empuja «Limpiar y ordenar» fuera al escribir
+- «¿No era un spoiler?» ahora guarda solo el texto del comentario, sin la fecha ni los «me gusta»
+- Twitch con «todas las imágenes»: el directo que abres, los emoticonos (también de 7TV, BTTV y FFZ), las insignias y las fotos de perfil ya no se emborronan
+
 ## 1.5 · 2026-11-18
 
 **🧠 Motor y protección**
